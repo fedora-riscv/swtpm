@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20181002
-%global gitcommit   0143c410fe7f3c23f9f923999b2745dde24ffc34
+%global gitdate     20181031
+%global gitcommit   c782a85a8f365b9c7d101fb7677fec76a3971c6b
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -93,6 +93,8 @@ make %{?_smp_mflags} check
 
 %make_install
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la,so}
+rm -f $RPM_BUILD_ROOT%{_mandir}/man8/swtpm-create-tpmca.8*
+rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/swtpm-create-tpmca
 
 %post
 for pp in /usr/share/selinux/packages/swtpm.pp \
@@ -160,6 +162,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Wed Oct 31 2018 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20181031gitc782a85
+- Follow improvements and fixes in swtpm
+
 * Tue Oct 02 2018 Stefan Berger <stefanb@linux.vnet.ibm.com> - 0.1.0-0.20181002git0143c41
 - Fixes to SELinux policy
 - Improvements on various other parts
