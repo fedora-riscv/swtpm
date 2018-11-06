@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20181031
-%global gitcommit   c782a85a8f365b9c7d101fb7677fec76a3971c6b
+%global gitdate     20181106
+%global gitcommit   05d81603639b7e1df53e3a4acf1cbdd3fa715e84
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -143,7 +143,7 @@ fi
 %{_bindir}/swtpm_cert
 %endif
 %{_bindir}/swtpm_setup
-%attr( 755, tss , tss)  %{_bindir}/swtpm_setup.sh
+%{_bindir}/swtpm_setup.sh
 %{_bindir}/swtpm_ioctl
 %{_mandir}/man8/swtpm_bios.8*
 %{_mandir}/man8/swtpm_cert.8*
@@ -162,6 +162,10 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Tue Nov 06 2018 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20181106git05d8160
+- Follow improvements in swtpm repo
+- Remove ownership change of swtpm_setup.sh; have root own the file as required
+
 * Wed Oct 31 2018 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20181031gitc782a85
 - Follow improvements and fixes in swtpm
 
