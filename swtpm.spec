@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20181106
-%global gitcommit   05d81603639b7e1df53e3a4acf1cbdd3fa715e84
+%global gitdate     20181212
+%global gitcommit   8b9484a35063a9a07c93051b2dae0b69d9d9676e
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -162,6 +162,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Wed Dec 12 2018 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20181212git8b9484a
+- Follow improvements in swtpm repo primarily related to fixes for 'ubsan'
+
 * Tue Nov 06 2018 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20181106git05d8160
 - Follow improvements in swtpm repo
 - Remove ownership change of swtpm_setup.sh; have root own the file as required
