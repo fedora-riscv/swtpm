@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20181212
-%global gitcommit   8b9484a35063a9a07c93051b2dae0b69d9d9676e
+%global gitdate     20190204
+%global gitcommit   2c25d137f7bbc50b1f6cde191073f465ad7878c3
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -31,6 +31,7 @@ BuildRequires:  python3
 BuildRequires:  python3-twisted
 BuildRequires:  trousers >= 0.3.9
 BuildRequires:  tpm-tools >= 1.3.8-6
+BuildRequires:  softhsm
 %if %{with gnutls}
 BuildRequires:  gnutls >= 3.1.0
 BuildRequires:  gnutls-devel
@@ -162,6 +163,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Mon Feb 04 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20190204git2c25d13.1
+- v0.1.0 release of swtpm
+
 * Sun Feb 03 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.0-0.20181212git8b9484a.1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
