@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20190204
-%global gitcommit   2c25d137f7bbc50b1f6cde191073f465ad7878c3
+%global gitdate     20190425
+%global gitcommit   ca85606210162b1a9f6269a2b1a0f20591a238a7
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -163,6 +163,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Thu Apr 25 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20190425gitca85606
+- pick up bug fixes
+
 * Mon Feb 04 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20190204git2c25d13.1
 - v0.1.0 release of swtpm
 
