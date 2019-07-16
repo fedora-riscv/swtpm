@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20190425
-%global gitcommit   ca85606210162b1a9f6269a2b1a0f20591a238a7
+%global gitdate     20190716
+%global gitcommit   374b66913f2f8a2a531cd7c2904a614e98da9dcd
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,7 +11,7 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.1.0
+Version:        0.2.0
 Release:        0.%{gitdate}git%{gitshortcommit}%{?dist}.1
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
@@ -41,6 +41,7 @@ BuildRequires:  libtasn1
 %endif
 BuildRequires:  selinux-policy-devel
 BuildRequires:  gcc
+BuildRequires:  libseccomp-devel
 
 Requires:       %{name}-libs = %{version}-%{release}
 Requires:       libtpms >= 0.6.0
@@ -163,6 +164,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Tue Jul 16 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-0.20190716git374b669
+- (tentative) v0.2.0 release of swtpm
+
 * Thu Apr 25 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.1.0-0.20190425gitca85606
 - pick up bug fixes
 
