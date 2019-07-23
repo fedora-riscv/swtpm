@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20190716
-%global gitcommit   374b66913f2f8a2a531cd7c2904a614e98da9dcd
+%global gitdate     20190723
+%global gitcommit   f0b41378bb94b077ea94562acee6c4325d26e4ac
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.2.0
-Release:        0.%{gitdate}git%{gitshortcommit}%{?dist}.1
+Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -164,6 +164,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Tue Jul 23 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-1.20190723gitf0b4137
+- follow stable-0.2.0 branch with some bug fixes
+
 * Tue Jul 16 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-0.20190716git374b669
 - (tentative) v0.2.0 release of swtpm
 
