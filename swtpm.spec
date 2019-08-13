@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.2.0
-Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        4.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -103,6 +103,7 @@ for pp in /usr/share/selinux/packages/swtpm.pp \
           /usr/share/selinux/packages/swtpm_svirt.pp; do
   %selinux_modules_install -s %{selinuxtype} ${pp}
 done
+restorecon %{_bindir}/swtpm
 
 %postun
 if [ $1 -eq  0 ]; then
@@ -164,7 +165,10 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
-* Fri Aug 01 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-3.20190801git13536aa
+* Tue Aug 13 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-4.20190801git13536aa
+- run 'restorecon' on swtpm in post to get SELinux label on first install
+
+* Thu Aug 01 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-3.20190801git13536aa
 - follow stable-0.2.0 branch with some bug fixes
 
 * Sat Jul 27 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-2.20190723gitf0b4137
