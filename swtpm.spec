@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20191018
-%global gitcommit   9227cf4bc615dbdb00115dd6913aaffce2ef1e71
+%global gitdate     20191115
+%global gitcommit   8dae4b3f9d4a71f67587d7900dae14c175a426d1
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.2.0
-Release:        5.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        6.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -165,8 +165,11 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Fri Nov 15 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-6.20191018git8dae4b3
+- follow stable-0.2.0 branch with fix of GnuTLS API call to get subject key ID
+
 * Fri Oct 18 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-5.20191018git9227cf4
-- follow stable-0.2.0 branch swith swtpm_cert OID bugfix for TPM 2
+- follow stable-0.2.0 branch with swtpm_cert OID bugfix for TPM 2
 
 * Tue Aug 13 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-4.20190801git13536aa
 - run 'restorecon' on swtpm in post to get SELinux label on first install
