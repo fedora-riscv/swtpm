@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20191115
-%global gitcommit   8dae4b3f9d4a71f67587d7900dae14c175a426d1
+%global gitdate     20200218
+%global gitcommit   74ae43bd8e4fca809d1cbc398efcb2f7f968b59f
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,11 +11,13 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.2.0
-Release:        7.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.3.0
+Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
+
+Patch0001:      0001-tests-Skip-test-4-of-derived-keys-in-case-an-allowed.patch
 
 BuildRequires:  automake
 BuildRequires:  autoconf
@@ -75,7 +77,7 @@ Requires:       trousers >= 0.3.9 tpm-tools >= 1.3.8-6 expect bash net-tools gnu
 Tools for the TPM emulator from the swtpm package
 
 %prep
-%autosetup -n %{name}-%{gitcommit}
+%autosetup -S git -n %{name}-%{gitcommit}
 
 %build
 
@@ -89,7 +91,7 @@ NOCONFIGURE=1 ./autogen.sh
 %make_build
 
 %check
-make %{?_smp_mflags} check
+make %{?_smp_mflags} check VERBOSE=1
 
 %install
 
@@ -165,6 +167,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Mon Feb 24 2020 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.3.0-1.20200218git74ae43b
+- Update to v0.3.0 release
+
 * Fri Jan 31 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-7.20191115git8dae4b3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
