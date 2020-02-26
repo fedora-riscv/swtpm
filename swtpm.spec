@@ -19,6 +19,7 @@ Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
 
 Patch0001:      0001-tests-Skip-test-4-of-derived-keys-in-case-an-allowed.patch
 
+BuildRequires:  git-core
 BuildRequires:  automake
 BuildRequires:  autoconf
 BuildRequires:  libtool
