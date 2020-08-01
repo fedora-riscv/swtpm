@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.3.0
-Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -168,6 +168,10 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.0-3.20200218git74ae43b
+- Second attempt - Rebuilt for
+  https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
 * Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.0-2.20200218git74ae43b
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
