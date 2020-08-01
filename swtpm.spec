@@ -12,12 +12,13 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.3.0
-Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        4.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
 
 Patch0001:      0001-tests-Skip-test-4-of-derived-keys-in-case-an-allowed.patch
+Patch0002:      0001-tests-Modify-sample-key-to-be-2048-bit-rather-than-o.patch
 
 BuildRequires:  git-core
 BuildRequires:  automake
