@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20191115
-%global gitcommit   8dae4b3f9d4a71f67587d7900dae14c175a426d1
+%global gitdate     20200811
+%global gitcommit   80f04180f200829053c38818ae83721b21c747e8
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,8 +11,8 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.2.0
-Release:        6.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.3.4
+Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -165,6 +165,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Tue Aug 11 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.4-1.20200811git80f0418
+- Update to v0.3.4 release
+
 * Fri Nov 15 2019 Stefan Berger <stefanb@linux.ibm.com> - 0.2.0-6.20191018git8dae4b3
 - follow stable-0.2.0 branch with fix of GnuTLS API call to get subject key ID
 
