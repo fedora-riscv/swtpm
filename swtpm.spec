@@ -90,7 +90,7 @@ NOCONFIGURE=1 ./autogen.sh
 %make_build
 
 %check
-make -O check V=1 VERBOSE=1
+make %{?_smp_mflags} check VERBOSE=1
 
 %install
 
@@ -168,9 +168,6 @@ fi
 %changelog
 * Tue Aug 11 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.4-1.20200711git80f0418
 - Update to v0.3.4 release
-
-* Fri Jul 31 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.3-1.20200731git823f821
-- Update to v0.3.3 release + patch fixing certificate chain verification error
 
 * Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.0-3.20200218git74ae43b
 - Second attempt - Rebuilt for
