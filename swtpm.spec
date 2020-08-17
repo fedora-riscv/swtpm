@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20200218
-%global gitcommit   74ae43bd8e4fca809d1cbc398efcb2f7f968b59f
+%global gitdate     20200811
+%global gitcommit   80f04180f200829053c38818ae83721b21c747e8
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,14 +11,11 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.3.0
-Release:        4.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.3.4
+Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
-
-Patch0001:      0001-tests-Skip-test-4-of-derived-keys-in-case-an-allowed.patch
-Patch0002:      0001-tests-Modify-sample-key-to-be-2048-bit-rather-than-o.patch
 
 BuildRequires:  git-core
 BuildRequires:  automake
@@ -93,7 +90,7 @@ NOCONFIGURE=1 ./autogen.sh
 %make_build
 
 %check
-make %{?_smp_mflags} check VERBOSE=1
+make -O check V=1 VERBOSE=1
 
 %install
 
@@ -169,6 +166,12 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Tue Aug 11 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.4-1.20200711git80f0418
+- Update to v0.3.4 release
+
+* Fri Jul 31 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.3-1.20200731git823f821
+- Update to v0.3.3 release + patch fixing certificate chain verification error
+
 * Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.0-3.20200218git74ae43b
 - Second attempt - Rebuilt for
   https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
