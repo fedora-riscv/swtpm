@@ -12,10 +12,12 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.3.4
-Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
+
+Patch0001:      0001-Temporarily-disable-a-pkcs11-test-case-due-to-bug-in.patch
 
 BuildRequires:  git-core
 BuildRequires:  automake
@@ -166,6 +168,9 @@ fi
 %attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Thu Aug 27 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.4-2.20200711git80f0418
+- Disable pkcs11 related test case running into GnuTLS locking bug
+
 * Tue Aug 11 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.4-1.20200711git80f0418
 - Update to v0.3.4 release
 
