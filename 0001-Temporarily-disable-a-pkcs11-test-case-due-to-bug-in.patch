@@ -1,0 +1,32 @@
+From ba424f8dc89ac89430c4f7513a9c82e8a4542e52 Mon Sep 17 00:00:00 2001
+From: Stefan Berger <stefanb@linux.ibm.com>
+Date: Thu, 27 Aug 2020 08:28:57 -0400
+Subject: [PATCH] Temporarily disable a pkcs11 test case due to bug in gnutls
+
+GnuTLS on current F33 and rawhide has a locking bug reported here:
+
+https://gitlab.com/gnutls/gnutls/-/issues/1060#note_392260362
+
+Disable the test case that runs into this bug to be able to build
+the package.
+
+Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
+---
+ tests/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index 8a4a9c2..c88acb4 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -79,7 +79,6 @@ TESTS += \
+ 	test_swtpm_cert \
+ 	test_tpm2_parameters \
+ 	test_tpm2_samples_swtpm_localca \
+-	test_tpm2_samples_swtpm_localca_pkcs11 \
+ 	test_tpm2_swtpm_cert \
+ 	test_tpm2_swtpm_cert_ecc \
+ 	test_tpm2_swtpm_setup_create_cert
+-- 
+2.28.0
+
