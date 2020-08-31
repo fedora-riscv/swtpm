@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20200811
-%global gitcommit   80f04180f200829053c38818ae83721b21c747e8
+%global gitdate     20200828
+%global gitcommit   0c238a2c93cdeea4283c6e9a7b8430a9b2df2b3e
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,7 +11,7 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.3.4
+Version:        0.4.0
 Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
@@ -22,16 +22,17 @@ BuildRequires:  automake
 BuildRequires:  autoconf
 BuildRequires:  libtool
 BuildRequires:  libtpms-devel >= 0.6.0
-BuildRequires:  glib2-devel
-BuildRequires:  gmp-devel
 BuildRequires:  expect
 BuildRequires:  net-tools
 BuildRequires:  openssl-devel
 BuildRequires:  socat
 BuildRequires:  python3
+BuildRequires:  python3-devel
+BuildRequires:  python3-cryptography
+BuildRequires:  python3-pip
+BuildRequires:  python3-setuptools
 BuildRequires:  python3-twisted
 BuildRequires:  trousers >= 0.3.9
-BuildRequires:  tpm-tools >= 1.3.8-6
 BuildRequires:  softhsm
 %if %{with gnutls}
 BuildRequires:  gnutls >= 3.1.0
@@ -70,7 +71,8 @@ Include files for the TPM emulator's CUSE interface.
 Summary:        Tools for the TPM emulator
 License:        BSD
 Requires:       swtpm = %{version}-%{release}
-Requires:       trousers >= 0.3.9 tpm-tools >= 1.3.8-6 expect bash net-tools gnutls-utils
+# trousers: for tss account
+Requires:       trousers >= 0.3.9 bash gnutls-utils python3 python3-cryptography
 
 %description    tools
 Tools for the TPM emulator from the swtpm package
@@ -163,9 +165,16 @@ fi
 %config(noreplace) %{_sysconfdir}/swtpm-localca.conf
 %dir %{_datadir}/swtpm
 %{_datadir}/swtpm/swtpm-localca
-%attr( 755, tss, tss) %{_localstatedir}/lib/swtpm-localca
+%{_datadir}/swtpm/swtpm-create-user-config-files
+%{python3_sitelib}/py_swtpm_setup/*
+%{python3_sitelib}/swtpm_setup-*/*
+%attr( 750, tss, root) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Fri Aug 28 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.4.0-1.20200828git0c238a2
+- Update to v0.4.0 release
+- Fixed /var/lib/swtpm-localca mode flags and ownership
+
 * Tue Aug 11 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.3.4-1.20200711git80f0418
 - Update to v0.3.4 release
 
