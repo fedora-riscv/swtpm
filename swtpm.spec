@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20200828
-%global gitcommit   0c238a2c93cdeea4283c6e9a7b8430a9b2df2b3e
+%global gitdate     20201007
+%global gitcommit   b931e1098533319f67e789f03c13a767a1772f7b
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,13 +11,11 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.4.0
+Version:        0.5.0
 Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
-
-Patch0001:      0001-Temporarily-disable-a-pkcs11-test-case-due-to-bug-in.patch
 
 BuildRequires:  git-core
 BuildRequires:  automake
@@ -46,6 +44,7 @@ BuildRequires:  libtasn1
 BuildRequires:  selinux-policy-devel
 BuildRequires:  gcc
 BuildRequires:  libseccomp-devel
+BuildRequires:  tpm2-pkcs11 tpm2-pkcs11-tools tpm2-tools tpm2-abrmd
 
 Requires:       %{name}-libs = %{version}-%{release}
 Requires:       libtpms >= 0.6.0
@@ -79,6 +78,16 @@ Requires:       trousers >= 0.3.9 bash gnutls-utils python3 python3-cryptography
 %description    tools
 Tools for the TPM emulator from the swtpm package
 
+%package        tools-pkcs11
+Summary:        Tools for creating a local CA based on a TPM pkcs11 device
+License:        BSD
+Requires:       swtpm-tools = %{version}-%{release}
+Requires:       tpm2-pkcs11 tpm2-pkcs11-tools tpm2-tools tpm2-abrmd
+Requires:       expect gnutls-utils trousers >= 0.3.9
+
+%description   tools-pkcs11
+Tools for creating a local CA based on a pkcs11 device
+
 %prep
 %autosetup -S git -n %{name}-%{gitcommit}
 
@@ -100,8 +109,6 @@ make %{?_smp_mflags} check VERBOSE=1
 
 %make_install
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la,so}
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/swtpm-create-tpmca.8*
-rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/swtpm-create-tpmca
 
 %post
 for pp in /usr/share/selinux/packages/swtpm.pp \
@@ -151,7 +158,6 @@ fi
 %{_bindir}/swtpm_cert
 %endif
 %{_bindir}/swtpm_setup
-%{_bindir}/swtpm_setup.sh
 %{_bindir}/swtpm_ioctl
 %{_mandir}/man8/swtpm_bios.8*
 %{_mandir}/man8/swtpm_cert.8*
@@ -170,9 +176,18 @@ fi
 %{_datadir}/swtpm/swtpm-create-user-config-files
 %{python3_sitelib}/py_swtpm_setup/*
 %{python3_sitelib}/swtpm_setup-*/*
+%{python3_sitelib}/py_swtpm_localca/*
+%{python3_sitelib}/swtpm_localca-*/*
 %attr( 750, tss, root) %{_localstatedir}/lib/swtpm-localca
 
+%files tools-pkcs11
+%{_mandir}/man8/swtpm-create-tpmca.8*
+%{_datadir}/swtpm/swtpm-create-tpmca
+
 %changelog
+* Wed Oct 7 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.4.0-1.20201007gitb931e109
+- Update to v0.5.0 release
+
 * Fri Aug 28 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.4.0-1.20200828git0c238a2
 - Update to v0.4.0 release
 
