@@ -171,7 +171,7 @@ fi
 %attr( 750, tss, root) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
-* Wed Oct 7 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.4.0-1.20201007gitb931e109
+* Wed Oct 7 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.0-1.20201007gitb931e109
 - Update to v0.5.0 release
 
 * Fri Aug 28 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.4.0-1.20200828git0c238a2
