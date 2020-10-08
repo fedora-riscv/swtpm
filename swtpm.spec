@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20200828
-%global gitcommit   0c238a2c93cdeea4283c6e9a7b8430a9b2df2b3e
+%global gitdate     20201007
+%global gitcommit   b931e1098533319f67e789f03c13a767a1772f7b
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,13 +11,11 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.4.0
+Version:        0.5.0
 Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
-
-Patch0001:      0001-Temporarily-disable-a-pkcs11-test-case-due-to-bug-in.patch
 
 BuildRequires:  git-core
 BuildRequires:  automake
@@ -150,7 +148,6 @@ fi
 %{_bindir}/swtpm_cert
 %endif
 %{_bindir}/swtpm_setup
-%{_bindir}/swtpm_setup.sh
 %{_bindir}/swtpm_ioctl
 %{_mandir}/man8/swtpm_bios.8*
 %{_mandir}/man8/swtpm_cert.8*
@@ -169,9 +166,14 @@ fi
 %{_datadir}/swtpm/swtpm-create-user-config-files
 %{python3_sitelib}/py_swtpm_setup/*
 %{python3_sitelib}/swtpm_setup-*/*
+%{python3_sitelib}/py_swtpm_localca/*
+%{python3_sitelib}/swtpm_localca-*/*
 %attr( 750, tss, root) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Wed Oct 7 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.4.0-1.20201007gitb931e109
+- Update to v0.5.0 release
+
 * Fri Aug 28 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.4.0-1.20200828git0c238a2
 - Update to v0.4.0 release
 - Fixed /var/lib/swtpm-localca mode flags and ownership
