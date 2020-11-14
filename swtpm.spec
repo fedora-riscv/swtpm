@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20201007
-%global gitcommit   b931e1098533319f67e789f03c13a767a1772f7b
+%global gitdate     20201113
+%global gitcommit   390f5bd48983a644a87af8e640c6474461305608
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,7 +11,7 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.5.0
+Version:        0.5.1
 Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
@@ -171,6 +171,9 @@ fi
 %attr( 750, tss, root) %{_localstatedir}/lib/swtpm-localca
 
 %changelog
+* Fri Nov 13 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.1-1.20201113git390f5bd4
+- Update to v0.5.1 addressing potential symlink attack issue (CVE-2020-28407)
+
 * Wed Oct 7 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.0-1.20201007gitb931e109
 - Update to v0.5.0 release
 
