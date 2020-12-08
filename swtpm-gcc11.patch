@@ -1,0 +1,18 @@
+diff --git a/src/swtpm/ctrlchannel.c b/src/swtpm/ctrlchannel.c
+index f76a68b..f847960 100644
+--- a/src/swtpm/ctrlchannel.c
++++ b/src/swtpm/ctrlchannel.c
+@@ -691,7 +691,12 @@ int ctrlchannel_process_fd(int fd,
+ 
+         data = (ptm_hdata *)&output.body;
+ 
+-        data->u.resp.tpm_result = htobe32(res);
++	/* gcc-11 flags this code with a diagnostic.  I'm not sure the diagnostic
++	   is valid, but regardless, this is reasonable workaround.  Essentially
++	   we are trying to obfuscate the above cast and store below from the
++	   analysis for out of bounds object access diagnostics.  */
++	uint32_t __x = htobe32(res);
++	memcpy (&data->u.resp.tpm_result, &__x, sizeof (__x));
+         out_len = sizeof(data->u.resp.tpm_result);
+ 
+         break;

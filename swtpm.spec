@@ -12,10 +12,11 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.5.1
-Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
+Patch0:         %{name}-gcc11.patch
 
 BuildRequires:  git-core
 BuildRequires:  automake
@@ -89,7 +90,7 @@ Requires:       expect gnutls-utils trousers >= 0.3.9
 Tools for creating a local CA based on a pkcs11 device
 
 %prep
-%autosetup -S git -n %{name}-%{gitcommit}
+%autosetup -S git -n %{name}-%{gitcommit} -p1
 
 %build
 
@@ -185,6 +186,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Mon Dec 07 2020 Jeff Law <law@redhat.com> - 0.5.1-3.20201117git96f5a04c
+- Avoid diagnostic from gcc-11
+
 * Tue Nov 13 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.1-2.20201117git96f5a04c
 - Another build of v0.5.1 after more fixes
 
