@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20201117
-%global gitcommit   96f5a04c3d6cc0a8604f311df246b872a93a70e4
+%global gitdate     20201226
+%global gitcommit   e59c0c1a7b4c8d652dbb280fd6126895a7057464
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,12 +11,11 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.5.1
-Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.5.2
+Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
-Patch0:         %{name}-gcc11.patch
 
 BuildRequires:  git-core
 BuildRequires:  automake
@@ -186,10 +185,13 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Sat Dec 26 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.2-1.20201226gite59c0c1a
+- Bugfixes for stable release
+
 * Mon Dec 07 2020 Jeff Law <law@redhat.com> - 0.5.1-3.20201117git96f5a04c
 - Avoid diagnostic from gcc-11
 
-* Tue Nov 13 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.1-2.20201117git96f5a04c
+* Fri Nov 13 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.1-2.20201117git96f5a04c
 - Another build of v0.5.1 after more fixes
 
 * Fri Nov 13 2020 Stefan Berger <stefanb@linux.ibm.com> - 0.5.1-1.20201007git390f5bd4
