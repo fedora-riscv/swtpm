@@ -17,6 +17,7 @@ License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
 
+BuildRequires: make
 BuildRequires:  git-core
 BuildRequires:  automake
 BuildRequires:  autoconf
