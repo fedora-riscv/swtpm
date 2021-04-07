@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.5.2
-Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -32,7 +32,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-cryptography
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
-BuildRequires:  python3-twisted
 BuildRequires:  trousers >= 0.3.9
 BuildRequires:  softhsm
 %if %{with gnutls}
@@ -186,6 +185,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Wed Apr 07 2021 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.5.2-3.20201226gite59c0c1
+- Remove unnecessary python3-twisted dependency
+
 * Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.2-2.20201226gite59c0c1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
