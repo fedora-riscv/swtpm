@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.5.2
-Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        4.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -185,6 +185,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Fri Jun 04 2021 Python Maint <python-maint@redhat.com> - 0.5.2-4.20201226gite59c0c1
+- Rebuilt for Python 3.10
+
 * Wed Apr 07 2021 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.5.2-3.20201226gite59c0c1
 - Remove unnecessary python3-twisted dependency
 
