@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20201226
-%global gitcommit   e59c0c1a7b4c8d652dbb280fd6126895a7057464
+%global gitdate     20210607
+%global gitcommit   ea627b3b5e847f9141fcf25de0c03004d35fb375
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,8 +11,8 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.5.2
-Release:        4.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.6.0
+Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -27,15 +27,11 @@ BuildRequires:  expect
 BuildRequires:  net-tools
 BuildRequires:  openssl-devel
 BuildRequires:  socat
-BuildRequires:  python3
-BuildRequires:  python3-devel
-BuildRequires:  python3-cryptography
-BuildRequires:  python3-pip
-BuildRequires:  python3-setuptools
 BuildRequires:  trousers >= 0.3.9
 BuildRequires:  softhsm
+BuildRequires:  json-glib-devel
 %if %{with gnutls}
-BuildRequires:  gnutls >= 3.1.0
+BuildRequires:  gnutls >= 3.4.0
 BuildRequires:  gnutls-devel
 BuildRequires:  gnutls-utils
 BuildRequires:  libtasn1-devel
@@ -73,7 +69,7 @@ Summary:        Tools for the TPM emulator
 License:        BSD
 Requires:       swtpm = %{version}-%{release}
 # trousers: for tss account
-Requires:       trousers >= 0.3.9 bash gnutls-utils python3 python3-cryptography
+Requires:       trousers >= 0.3.9 bash gnutls-utils
 
 %description    tools
 Tools for the TPM emulator from the swtpm package
@@ -174,10 +170,6 @@ fi
 %dir %{_datadir}/swtpm
 %{_datadir}/swtpm/swtpm-localca
 %{_datadir}/swtpm/swtpm-create-user-config-files
-%{python3_sitelib}/py_swtpm_setup/*
-%{python3_sitelib}/swtpm_setup-*/*
-%{python3_sitelib}/py_swtpm_localca/*
-%{python3_sitelib}/swtpm_localca-*/*
 %attr( 750, tss, root) %{_localstatedir}/lib/swtpm-localca
 
 %files tools-pkcs11
@@ -185,6 +177,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Mon Jun 07 2021 Stefan Berger <stefanb@linux.ibm.com> - 0.6.0-1.20210706gitea627b
+- Update to v0.6.0 release
+
 * Fri Jun 04 2021 Python Maint <python-maint@redhat.com> - 0.5.2-4.20201226gite59c0c1
 - Rebuilt for Python 3.10
 
