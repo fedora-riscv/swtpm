@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.6.0
-Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -41,6 +41,7 @@ BuildRequires:  selinux-policy-devel
 BuildRequires:  gcc
 BuildRequires:  libseccomp-devel
 BuildRequires:  tpm2-pkcs11 tpm2-pkcs11-tools tpm2-tools tpm2-abrmd
+BuildRequires:  python3-devel
 
 Requires:       %{name}-libs = %{version}-%{release}
 Requires:       libtpms >= 0.6.0
@@ -177,6 +178,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Tue Jul 13 2021 Davide Cavalca <dcavalca@fedoraproject.org> - 0.6.0-2.20210706gitea627b
+- Add an explicit BuildRequires for python3-devel
+
 * Mon Jun 07 2021 Stefan Berger <stefanb@linux.ibm.com> - 0.6.0-1.20210706gitea627b
 - Update to v0.6.0 release
 
