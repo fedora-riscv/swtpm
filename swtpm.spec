@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.6.0
-Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -178,6 +178,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Fri Jul 23 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-3.20210607gitea627b3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Tue Jul 13 2021 Davide Cavalca <dcavalca@fedoraproject.org> - 0.6.0-2.20210706gitea627b
 - Add an explicit BuildRequires for python3-devel
 
