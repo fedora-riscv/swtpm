@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20210607
-%global gitcommit   ea627b3b5e847f9141fcf25de0c03004d35fb375
+%global gitdate     20210916
+%global gitcommit   a0ca7c328f1c3c6a417973d194b41d06ab7b0802
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,13 +11,11 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.6.0
-Release:        5.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.6.1
+Release:        0.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
-
-Patch0001:      0001-build-sys-Add-Wno-deprecated-declarations-to-default.patch
 
 BuildRequires: make
 BuildRequires:  git-core
@@ -89,7 +87,6 @@ Tools for creating a local CA based on a pkcs11 device
 
 %prep
 %autosetup -S git -n %{name}-%{gitcommit} -p1
-%patch0001 -p1
 
 %build
 
@@ -181,6 +178,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Thu Sep 16 2021 Stefan Berger <stefanb@linux.ibm.com> - 0.6.1-0.20210916gita0ca7c3
+- Build upcoming v0.6.1 that has patch to build with OpenSSL 3.0.0
+
 * Thu Sep 16 2021 Stefan Berger <stefanb@linux.ibm.com.> - 0.6.0-5.20210607gitea627b3
 - Applied patch with -Wno-deprecated-declarations for build with OpenSSL 3.0.0
 
