@@ -1,0 +1,29 @@
+From a0ca7c328f1c3c6a417973d194b41d06ab7b0802 Mon Sep 17 00:00:00 2001
+From: Stefan Berger <stefanb@linux.ibm.com>
+Date: Wed, 15 Sep 2021 11:34:02 -0400
+Subject: [PATCH] build-sys: Add -Wno-deprecated-declarations to default CFLAGS
+ (OSSL 3)
+
+To be able to build with OpenSSL 3.0 we need to added
+-Wno-deprecated-declarations to the default CFLAGS.
+
+Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
+---
+ configure.ac | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/configure.ac b/configure.ac
+index 1e0710c..7da1b47 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -461,6 +461,7 @@ AC_SUBST([TSS_GROUP])
+ CFLAGS="$CFLAGS -Wreturn-type -Wsign-compare -Wswitch-enum"
+ CFLAGS="$CFLAGS -Wmissing-prototypes -Wall -Werror"
+ CFLAGS="$CFLAGS -Wformat -Wformat-security"
++CFLAGS="$CFLAGS -Wno-deprecated-declarations"
+ CFLAGS="$CFLAGS $GNUTLS_CFLAGS $COVERAGE_CFLAGS"
+ 
+ LDFLAGS="$LDFLAGS $COVERAGE_LDFLAGS"
+-- 
+2.31.1
+
