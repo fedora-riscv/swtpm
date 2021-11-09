@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20210921
-%global gitcommit   98187d24fe14851653a7c46eb16e9c5f0b9beaa1
+%global gitdate     20211109
+%global gitcommit   b79fd91c4b4a74c9c5027b517c5036952c5525db
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,7 +11,7 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.6.1
+Version:        0.7.0
 Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
@@ -156,15 +156,16 @@ fi
 %endif
 %{_bindir}/swtpm_setup
 %{_bindir}/swtpm_ioctl
+%{_bindir}/swtpm_localca
 %{_mandir}/man8/swtpm_bios.8*
 %{_mandir}/man8/swtpm_cert.8*
 %{_mandir}/man8/swtpm_ioctl.8*
 %{_mandir}/man8/swtpm-localca.conf.8*
 %{_mandir}/man8/swtpm-localca.options.8*
 %{_mandir}/man8/swtpm-localca.8*
+%{_mandir}/man8/swtpm_localca.8*
 %{_mandir}/man8/swtpm_setup.8*
 %{_mandir}/man8/swtpm_setup.conf.8*
-%{_mandir}/man8/swtpm_setup.sh.8*
 %config(noreplace) %{_sysconfdir}/swtpm_setup.conf
 %config(noreplace) %{_sysconfdir}/swtpm-localca.options
 %config(noreplace) %{_sysconfdir}/swtpm-localca.conf
@@ -178,6 +179,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Tue Nov 09 2021 Stefan Berger <stefanb@linux.ibm.com> - 0.7.0-1.20211109gitb79fd91
+- Update to v0.7.0 release
+
 * Tue Sep 21 2021 Stefan Berger <stefanb@linux.ibm.com> - 0.6.1-1.20210921git98187d2
 - Update to v0.6.1 release
 
