@@ -45,7 +45,9 @@ BuildRequires:  python3-devel
 
 Requires:       %{name}-libs = %{version}-%{release}
 Requires:       libtpms >= 0.6.0
+%if ! 0%{?flatpak}
 %{?selinux_requires}
+%endif
 
 %description
 TPM emulator built on libtpms providing TPM functionality for QEMU VMs
