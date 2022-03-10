@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20201226
-%global gitcommit   e59c0c1a7b4c8d652dbb280fd6126895a7057464
+%global gitdate     20220310
+%global gitcommit   36cf9da0b0251ab2dae09eeb05f29b733a11337b
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,8 +11,8 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.5.2
-Release:        3.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.5.4
+Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -185,6 +185,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Thu Mar 10 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.5.4-1.20220305git36cf9da
+- Update to v0.5.4
+
 * Wed Apr 07 2021 Marc-André Lureau <marcandre.lureau@redhat.com> - 0.5.2-3.20201226gite59c0c1
 - Remove unnecessary python3-twisted dependency
 
