@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.7.3
-Release:        1.%{gitdate}git%{gitshortcommit}%{?dist}
+Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -181,6 +181,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Sat Jul 23 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.3-2.20220427gitf2268ee
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Wed Apr 27 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.7.3-1.20220427gitf2268ee
 - Update to v0.7.3 release
 
