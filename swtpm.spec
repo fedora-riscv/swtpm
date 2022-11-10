@@ -1,7 +1,7 @@
 %bcond_without gnutls
 
-%global gitdate     20220427
-%global gitcommit   f2268eebb0d1adf89bad83fa4cf91e37b4e3fa53
+%global gitdate     20221110
+%global gitcommit   2ae7b019370760e17f4f2675195a91ca53950eda
 %global gitshortcommit  %(c=%{gitcommit}; echo ${c:0:7})
 
 # Macros needed by SELinux
@@ -11,8 +11,8 @@
 
 Summary: TPM Emulator
 Name:           swtpm
-Version:        0.7.3
-Release:        2.%{gitdate}git%{gitshortcommit}%{?dist}
+Version:        0.8.0
+Release:        1%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -181,6 +181,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Thu Nov 10 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.8.0-1
+- Update to v0.8.0 release
+
 * Sat Jul 23 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.3-2.20220427gitf2268ee
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
