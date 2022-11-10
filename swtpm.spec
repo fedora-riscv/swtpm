@@ -17,6 +17,8 @@ License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
 
+Patch0001:	0001-swtpm_setup-Initialized-argv-to-NULL-Fedore-Rawhide.patch
+
 BuildRequires: make
 BuildRequires:  git-core
 BuildRequires:  automake
@@ -89,6 +91,7 @@ Tools for creating a local CA based on a pkcs11 device
 
 %prep
 %autosetup -S git -n %{name}-%{gitcommit} -p1
+%patch0001 -p1
 
 %build
 
@@ -181,6 +184,9 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
+* Thu Nov 10 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.8.0-1
+- Adding patch needed on Rawhide build servers only
+
 * Thu Nov 10 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.8.0-1
 - Update to v0.8.0 release
 
