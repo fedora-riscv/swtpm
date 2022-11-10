@@ -12,7 +12,7 @@
 Summary: TPM Emulator
 Name:           swtpm
 Version:        0.8.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        BSD
 Url:            http://github.com/stefanberger/swtpm
 Source0:        %{url}/archive/%{gitcommit}/%{name}-%{gitshortcommit}.tar.gz
@@ -184,7 +184,7 @@ fi
 %{_datadir}/swtpm/swtpm-create-tpmca
 
 %changelog
-* Thu Nov 10 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.8.0-1
+* Thu Nov 10 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.8.0-2
 - Adding patch needed on Rawhide build servers only
 
 * Thu Nov 10 2022 Stefan Berger <stefanb@linux.ibm.com> - 0.8.0-1
