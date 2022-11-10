@@ -91,7 +91,6 @@ Tools for creating a local CA based on a pkcs11 device
 
 %prep
 %autosetup -S git -n %{name}-%{gitcommit} -p1
-%patch0001 -p1
 
 %build
 
